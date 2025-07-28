@@ -1,45 +1,44 @@
 ---
-- name: Install Nginx
-  ansible.builtin.dnf:
-    name: nginx
-    state: latest
+- name: Install and Configure Nginx for Expense App
+  become: yes
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
 
+    - name: Copy Expense Nginx Conf
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
 
-- name: Copy Expense Nginx Conf
-  ansible.builtin.copy:
-    src: expense.conf
-    dest: /etc/nginx/default.d/expense.conf
+    - name: Clean old content
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: absent
 
+    - name: Create App directory
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: directory
 
+    - name: Download App content
+      ansible.builtin.get_url:
+        url: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+        dest: /tmp/frontend.zip
 
-- name: Clean old content
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent
+    - name: Extract frontend zip content
+      ansible.builtin.unarchive:
+        src: /tmp/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
 
+    - name: Print Task Heading - Start Nginx Service
+      ansible.builtin.debug:
+        msg: "Starting and Enabling Nginx Service"
 
-- name: Create App directory
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
-
-- name: Download App content
-  ansible.builtin.get_url:
-    url: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
-    dest: /tmp/frontend.zip
-
-- name: Extract foo.tgz into /var/lib/foo
-  ansible.builtin.unarchive:
-    src: /usr/share/nginx/html
-    dest: /tmp/frontend.zip
-
-
-- name: Start Nginx
-  ansible.builtin.service:
-    name: nginx
-    state: started
-    enabled: yes
-#Print_Task_Heading "Start Nginx Service"
-#systemctl enable nginx &>>$Log
-#systemctl restart nginx &>>$Log
-#Check_Status $?
+    - name: Start Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
