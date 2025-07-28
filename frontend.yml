@@ -1,8 +1,8 @@
 ---
 - name: Install Nginx
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: nginx
-    state: present
+    state: latest
 
 
 - name: Copy Expense Nginx Conf
