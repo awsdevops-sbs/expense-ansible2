@@ -13,7 +13,7 @@
   - name: Install NodeJs
     dnf:
       name: NodeJs
-      state: latest
+      state: installed
 
   - name: Add application user
     user:
