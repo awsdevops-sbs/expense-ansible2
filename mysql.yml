@@ -1,0 +1,30 @@
+---
+- name: Install and Configure Nginx for Expense App
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install MySQL server
+      dnf:
+        name: mysql-server
+        state: Installed
+
+    - name: Enable and Start MySQL server
+      service:
+        name: mysqld
+        state: mysqld
+        enable: yes
+
+    - name: Setup MySql password
+      shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+
+
+#
+#Print_Task_Heading "Setup MySql password"
+#echo 'show databases' | mysql -h mysql-dev.awsdevops.sbs -uroot -p${My_root_password} &>>$Log
+#if [ $? -ne 0 ]; then
+#sudo mysql_secure_installation --set-root-pass ${My_root_password} &>>$Log
+#
+#fi
+#
+#Check_Status $?
