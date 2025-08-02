@@ -8,7 +8,7 @@
     shell: dnf module disable nodejs -y
 
   - name: Enable Default NodeJs version module
-    shell: dnf module enable nodejs:20 -y
+    shell: dnf module disable nodejs:20 -y
 
   - name: Install NodeJs
     dnf:
