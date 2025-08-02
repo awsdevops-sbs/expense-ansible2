@@ -1,5 +1,5 @@
 ---
-- name: Install and Configure Nginx for Expense App
+- name: Install and Configure MySQL server for Expense App
   hosts: all
   become: yes
   tasks:
