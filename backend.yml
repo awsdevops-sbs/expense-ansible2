@@ -55,6 +55,11 @@
       name: mysql
       state: latest
 
+  - name: Install MySQL Client
+    ansible.builtin.dnf:
+      name: mysql
+      state: installed
+
 
   - name: Load Schema
     community.mysql.mysql_db:
