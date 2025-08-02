@@ -13,7 +13,7 @@
       service:
         name: mysqld
         state: started
-        enable: yes
+        enabled: yes
 
     - name: Setup MySql password
       shell: mysql_secure_installation --set-root-pass ExpenseApp@1
