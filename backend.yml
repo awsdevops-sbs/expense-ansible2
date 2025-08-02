@@ -12,7 +12,7 @@
 
   - name: Install NodeJs
     dnf:
-      name: NodeJs
+      name: nodejs
       state: installed
 
   - name: Add application user
