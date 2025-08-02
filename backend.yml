@@ -77,7 +77,7 @@
     service:
       name: backend
       state: restarted
-      enable: yes
-      daemon-reloaded: yes
+      enabled: yes
+      daemon-reload: yes
 
 
