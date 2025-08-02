@@ -47,7 +47,7 @@
 
   - name: Download NodeJs dependencies.
     community.general.npm:
-      name: NodeJs
+      name: nodejs
       path: /app
 
   - name: Install Mysql Server
