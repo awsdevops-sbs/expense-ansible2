@@ -50,10 +50,10 @@
       name: nodejs
       path: /app
 
-  - name: Install Mysql Server
-    dnf:
-      name: mysql
-      state: latest
+  - name: Install required Python package for MySQL (PyMySQL)
+    pip:
+      name: PyMySQL
+      state: present
 
   - name: Install MySQL Client
     dnf:
