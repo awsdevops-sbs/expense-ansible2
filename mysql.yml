@@ -7,7 +7,7 @@
     - name: Install MySQL server
       dnf:
         name: mysql-server
-        state: Installed
+        state: installed
 
     - name: Enable and Start MySQL server
       service:
