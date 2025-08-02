@@ -12,7 +12,7 @@
     - name: Enable and Start MySQL server
       service:
         name: mysqld
-        state: mysqld
+        state: started
         enable: yes
 
     - name: Setup MySql password
