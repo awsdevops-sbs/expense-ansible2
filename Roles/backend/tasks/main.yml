@@ -1,0 +1,66 @@
+---
+- name: Disable Default NodeJs version module
+  shell: dnf module disable nodejs -y
+
+- name: Enable Default NodeJs version module
+  shell: dnf module disable nodejs:20 -y
+
+- name: Install NodeJs
+  dnf:
+    name: nodejs
+    state: installed
+
+- name: Add application user
+  user:
+    name: expense
+
+- name: Copy Backend service
+  copy:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+
+- name: Include myrole tasks
+  import_role:
+    name: backend
+
+- name: Extract backend zip content
+  unarchive:
+    src: /tmp/backend.zip
+    dest: /app
+    remote_src: yes
+
+- name: Download NodeJs dependencies.
+  community.general.npm:
+    name: nodejs
+    path: /app
+
+- name: Install required Python packages for MySQL
+  pip:
+    name:
+      - PyMySQL
+      - cryptography
+    state: present
+
+
+- name: Install MySQL Client
+  dnf:
+    name: mysql
+    state: installed
+
+
+- name: Load Schema
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /app/schema/backend.sql
+    login_user: root
+    login_password: ExpenseApp@1
+    login_host: mysql-dev.awsdevops.sbs
+
+- name: Start Backend service
+  service:
+    name: backend
+    state: restarted
+    enabled: yes
+    daemon-reload: yes
+# tasks file for backend

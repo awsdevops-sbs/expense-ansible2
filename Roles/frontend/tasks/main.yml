@@ -1,0 +1,30 @@
+- name: Install Nginx
+  dnf:
+    name: nginx
+    state: latest
+
+- name: Copy Expense Nginx Conf
+  copy:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
+
+- name: Include myrole tasks
+  import_role:
+    name: frontend
+
+- name: Extract frontend zip content
+  unarchive:
+    src: /tmp/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Print Task Heading - Start Nginx Service
+  debug:
+    msg: "Starting and Enabling Nginx Service"
+
+- name: Start Nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+# tasks file for frontend

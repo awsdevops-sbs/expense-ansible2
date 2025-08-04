@@ -1,0 +1,4 @@
+---
+app_loc: /usr/share/nginx/html
+component: frontend
+# vars file for frontend

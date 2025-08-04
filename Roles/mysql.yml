@@ -2,21 +2,8 @@
 - name: Install and Configure MySQL server for Expense App
   hosts: all
   become: yes
-  tasks:
-
-    - name: Install MySQL server
-      dnf:
-        name: mysql-server
-        state: installed
-
-    - name: Enable and Start MySQL server
-      service:
-        name: mysqld
-        state: started
-        enabled: yes
-
-    - name: Setup MySql password
-      shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+  roles:
+    - mysql
 
 
 #

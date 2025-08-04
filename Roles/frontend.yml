@@ -1,0 +1,7 @@
+---
+- name: Install and Configure Nginx for Expense App
+  hosts: all
+  become: yes
+  roles:
+    - frontend
+
