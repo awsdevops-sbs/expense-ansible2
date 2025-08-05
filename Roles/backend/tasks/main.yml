@@ -14,7 +14,7 @@
   user:
     name: expense
 
-- name: Copy Backend service
+- name: Copy Backend service in template
   template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
