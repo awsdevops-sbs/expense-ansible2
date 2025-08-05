@@ -10,7 +10,8 @@
 
 - name: Include myrole tasks
   import_role:
-    name: frontend
+    name: common
+    tasks_from: app_pre_req
 
 - name: Extract frontend zip content
   unarchive:
