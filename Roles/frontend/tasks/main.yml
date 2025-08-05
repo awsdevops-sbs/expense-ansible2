@@ -4,7 +4,7 @@
     state: latest
 
 - name: Copy Expense Nginx Conf
-  copy:
+  template:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 

@@ -15,13 +15,14 @@
     name: expense
 
 - name: Copy Backend service
-  copy:
+  template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
 
 - name: Include myrole tasks
   import_role:
-    name: backend
+    name: common
+    tasks_from: app_pre_req
 
 - name: Extract backend zip content
   unarchive:

@@ -1,17 +1,3 @@
 ---
-
-- name: Clean old content
-  file:
-    path: "{{ app_loc }}"
-    state: absent
-
-- name: Create App directory
-  file:
-    path: "{{ app_loc }}"
-    state: directory
-
-- name: Download App content
-  get_url:
-    url: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
-    dest: /tmp/{{ component }}.zip
-# tasks file for common
+- name: Set Prompts expens projects
+  shell: set-prompt {{ component }} - {{ env }}
