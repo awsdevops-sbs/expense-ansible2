@@ -1,5 +1,5 @@
+#!/bin/bash
 component=$1
-env=$2
 
 ansible-playbook -i "${component}-${env}.awsdevops.sbs," \
   -e "ansible_user=ec2-user" \
@@ -7,3 +7,10 @@ ansible-playbook -i "${component}-${env}.awsdevops.sbs," \
   -e "role_name=${component}" \
   -e "env=${env}" \
   expense.yml
+
+
+
+
+
+
+
