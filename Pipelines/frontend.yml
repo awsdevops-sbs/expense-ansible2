@@ -13,6 +13,8 @@ pipelines:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
+          environment_variables: env
+          env: dev
           approval:
             type: manual
             allow_only_on_success: false
@@ -31,6 +33,8 @@ pipelines:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
+          environment_variables: env
+          env: dev
           approval:
             type: manual
             allow_only_on_success: false
@@ -45,10 +49,12 @@ pipelines:
                     command: bash
                     run_if: passed
 
-      - Stage:
+      - STAGES:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
+          environment_variables: env
+          env: dev
           approval:
             type: manual
             allow_only_on_success: false
@@ -67,6 +73,8 @@ pipelines:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
+          environment_variables: env
+          env: dev
           approval:
             type: manual
             allow_only_on_success: false
