@@ -11,10 +11,11 @@ pipelines:
     stages:
       - Dev:
           fetch_materials: true
+          environment_variables:
+            env: dev
           keep_artifacts: false
           clean_workspace: false
-          environment_variables: env
-          env: dev
+
           approval:
             type: manual
             allow_only_on_success: false
@@ -31,10 +32,10 @@ pipelines:
 
       - QA:
           fetch_materials: true
+          environment_variables:
+            env: dev
           keep_artifacts: false
           clean_workspace: false
-          environment_variables: env
-          env: dev
           approval:
             type: manual
             allow_only_on_success: false
@@ -51,10 +52,11 @@ pipelines:
 
       - STAGES:
           fetch_materials: true
+          environment_variables:
+            env: dev
           keep_artifacts: false
           clean_workspace: false
-          environment_variables: env
-          env: dev
+
           approval:
             type: manual
             allow_only_on_success: false
@@ -71,10 +73,11 @@ pipelines:
 
       - Prod:
           fetch_materials: true
+          environment_variables:
+            env: dev
           keep_artifacts: false
           clean_workspace: false
-          environment_variables: env
-          env: dev
+
           approval:
             type: manual
             allow_only_on_success: false
