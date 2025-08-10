@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
   frontend:
-
+    group: defaultGroup
     materials:
       git-32c1ad5:
         git: https://github.com/awsdevops-sbs/expense-ansible2.git
