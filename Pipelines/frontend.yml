@@ -24,7 +24,7 @@ pipelines:
                     arguments:
                       - ansible.sh
                       - frontend
-                    command: ansible-playbook
+                    command: bash
                     run_if: passed
 
       - QA:
@@ -42,7 +42,7 @@ pipelines:
                     arguments:
                       - ansible.sh
                       - frontend
-                    command: ansible-playbook
+                    command: bash
                     run_if: passed
 
       - Stage:
@@ -60,7 +60,7 @@ pipelines:
                     arguments:
                       - ansible.sh
                       - frontend
-                    command: ansible-playbook
+                    command: bash
                     run_if: passed
 
       - Prod:
@@ -78,5 +78,5 @@ pipelines:
                     arguments:
                       - ansible.sh
                       - frontend
-                    command: ansible-playbook
+                    command: bash
                     run_if: passed
