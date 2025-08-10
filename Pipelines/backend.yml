@@ -1,0 +1,93 @@
+format_version: 10
+pipelines:
+  backend:
+    group: defaultGroup
+    materials:
+      git-32c1ad5:
+        git: https://github.com/awsdevops-sbs/expense-ansible2.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+      - Dev:
+          fetch_materials: true
+          environment_variables:
+            env: dev
+          keep_artifacts: false
+          clean_workspace: false
+
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible_playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash
+                    run_if: passed
+
+      - QA:
+          fetch_materials: true
+          environment_variables:
+            env: qa
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible_playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash
+                    run_if: passed
+
+      - STAGES:
+          fetch_materials: true
+          environment_variables:
+            env: stages
+          keep_artifacts: false
+          clean_workspace: false
+
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible_playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash
+                    run_if: passed
+
+      - Prod:
+          fetch_materials: true
+          environment_variables:
+            env: prod
+          keep_artifacts: false
+          clean_workspace: false
+
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible_playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash
+                    run_if: passed
