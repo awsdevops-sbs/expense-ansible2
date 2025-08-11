@@ -1,6 +1,6 @@
   - name: Install MySQL server
     dnf:
-      name: mysql.yml-server
+      name: mysql-server
       state: installed
 
   - name: Enable and Start MySQL server
