@@ -45,7 +45,7 @@
 
 - name: Install MySQL Client
   dnf:
-    name: mysql.yml
+    name: mysql
     state: installed
 
 
