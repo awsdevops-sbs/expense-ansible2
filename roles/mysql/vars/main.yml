@@ -1,3 +1,4 @@
 ---
 component: mysql
+mysql_root_password: "ExpenseApp@1"
 # vars file for mysql.yml
